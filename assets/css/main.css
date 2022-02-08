@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.day-hover {
+    @apply hover:bg-gradient-to-br from-[#94B8FF] to-[#6598FF] hover:text-white hover:cursor-pointer;
+}
+
+::-webkit-scrollbar {
+    width: 0.6rem;
+    background-color: #F0F5FF;
+    border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #A3C2FF;
+    border-radius: 0.5rem;
+}

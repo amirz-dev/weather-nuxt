@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode:'class',
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -7,7 +8,9 @@ module.exports = {
     "./nuxt.config.{js,ts}",
   ],
   theme: {
-    extend: {},
+    fontFamily:{
+      sans:['Roboto',"sans-serif"]
+    }
   },
   plugins: [],
 }
