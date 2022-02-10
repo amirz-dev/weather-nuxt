@@ -44,6 +44,10 @@ export default {
     '@nuxtjs/axios',
   ],
 
+  axios: {
+    baseURL:"https://pfa.foreca.com/"
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     postcss: {
