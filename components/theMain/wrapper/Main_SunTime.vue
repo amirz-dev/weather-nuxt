@@ -12,7 +12,7 @@
         <i class="ri-add-circle-line text-[22px] text-[#C3C8DE]"></i>
       </div>
 
-      <!-- location 1  h-[115px] -->
+      <!-- locations -->
       <div class="" v-for="(item, index) in allLoc" :key="index">
         <div
           class="flex flex-col w-full bg-[#FFF8F0] dark:bg-[#00000026] rounded-2xl px-[15px] py-5 mt-5"
@@ -41,7 +41,9 @@
 
               <div class="flex flex-col">
                 <p class="text-[14px] text-[#C3C8DE]">Sunrise</p>
-                <p class="text-[14px] md:text-[16px] font-medium text-[#5C92FF]">
+                <p
+                  class="text-[14px] md:text-[16px] font-medium text-[#5C92FF]"
+                >
                   {{ item.weathers[0].sunrise.slice(0, 5) }} AM
                 </p>
               </div>
@@ -53,7 +55,9 @@
 
               <div class="flex flex-col">
                 <p class="text-[14px] text-[#C3C8DE]">Sunset</p>
-                <p class="text-[14px] md:text-[16px] font-medium text-[#5C92FF]">
+                <p
+                  class="text-[14px] md:text-[16px] font-medium text-[#5C92FF]"
+                >
                   {{ item.weathers[0].sunset.slice(0, 5) }} PM
                 </p>
               </div>

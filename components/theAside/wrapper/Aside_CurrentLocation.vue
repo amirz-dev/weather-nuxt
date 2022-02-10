@@ -1,5 +1,6 @@
 <template>
   <div class="w-full mt-12 rounded-[20px] overflow-hidden">
+    <!-- when current location doesn't loaded show Skeleton -->
     <Skeleton v-if="!currentLoc.id" height="500px" />
 
     <div
@@ -35,7 +36,7 @@
         :src="
           'https://www.foreca.com/public/images/symbols/' + active.icon + '.svg'
         "
-        alt=""
+        alt="active.description"
         class="w-[120px] h-[180px] mt-[22px]"
       />
       <p class="text-[16px]">
@@ -106,6 +107,7 @@ export default {
   },
   methods: {
     changeLoc() {
+      // when click location btn, change whatLoc state && selected search input and go top in page 
       this.$store.commit(
         "changeWhatLoc",
         this.currentLoc ? this.currentLoc.locIndex : "first"

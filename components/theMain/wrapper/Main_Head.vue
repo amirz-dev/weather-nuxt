@@ -50,6 +50,7 @@ export default {
   },
   computed: {
     welcomeMsg() {
+      // change welcome message
       if (this.time.slice(-2) == "AM" && +this.time.slice(0, 2) > 3) {
         return "Good morning";
       } else if (this.time.slice(-2) == "PM" && +this.time.slice(0, 2) == 12 || +this.time.slice(0, 1) < 6) {
@@ -62,6 +63,7 @@ export default {
   },
 
   created() {
+    // get time
     setInterval(() => {
       const d = new Date();
       const hour = d.getHours();

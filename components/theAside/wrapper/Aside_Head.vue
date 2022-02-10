@@ -89,6 +89,7 @@ export default {
       return this.$store.getters.whatLoc;
     },
     color() {
+      // change search box color
       let color;
 
       switch (this.whatLoc) {

@@ -43,6 +43,7 @@
     ></div>
   </div>
 
+  <!-- when other location doesn't exist show empty box -->
   <div
     v-else-if="allLoc[locsIndex()].id"
     class="flex items-center justify-center w-full h-[110px] rounded-[20px] mt-7 border-dashed border-2 hover:cursor-pointer"
@@ -104,6 +105,8 @@ export default {
       return this.Locs[this.index + n];
     },
     changeLoc() {
+      // when click change btn, change what location and selected search input & go top of page
+      // thats moment can set new location
       this.$store.commit(
         "changeWhatLoc",
         this.filterLoc ? this.filterLoc.locIndex : this.locsIndex(1)
@@ -112,8 +115,14 @@ export default {
       document.querySelector("#search_input").select();
       document.documentElement.scrollTop = 0;
 
+      // if exist location change on current location and show next 7 days weather
       if (this.allLoc[this.locsIndex(1)].id) {
-        this.$store.commit("setCurrentLoc", this.filterLoc);
+        this.$store.commit(
+          "set_CurrentLoc_and_FilterLocations",
+          this.filterLoc
+        );
+
+        // set first day to active and current day
         const currentLoc = this.$store.getters.currentLoc;
         this.$store.commit("setActiveDay", {
           ...currentLoc.weathers[0],

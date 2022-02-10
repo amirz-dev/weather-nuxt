@@ -46,6 +46,7 @@ export default {
       return this.$store.getters.activeDay;
     },
     background() {
+      // change background when change location
       let background;
 
       switch (this.$store.getters.currentLoc.locIndex) {
@@ -65,6 +66,7 @@ export default {
   },
   methods: {
     activeDay(index) {
+      // set active day and show weather
       this.$store.commit("setActiveDay", {
         ...this.weathers[index],
         id: index,

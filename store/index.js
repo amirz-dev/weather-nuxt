@@ -28,6 +28,7 @@ export const getters = {
     return state.activeDay;
   },
   colors: () => (index) => {
+    // get colors for locations box
     let colors;
 
     switch (index) {
@@ -65,17 +66,16 @@ export const mutations = {
   setLocInfo(state, payload) {
     state.allLoc[payload.loc] = payload.data;
   },
-  setCurrentLoc(state, payload) {
+  set_CurrentLoc_and_FilterLocations(state, payload) {
     state.currentLoc = payload;
 
+    // filter locations, two loc show in more locations
     const filter = [];
     for (const key in state.allLoc) {
-      if (state.allLoc[key].id) {
-        if (state.allLoc[key].id != payload.id) {
-          filter.push({
-            ...state.allLoc[key],
-          });
-        }
+      if (state.allLoc[key].id && state.allLoc[key].id != payload.id) {
+        filter.push({
+          ...state.allLoc[key],
+        });
       }
     }
 
@@ -90,7 +90,7 @@ export const mutations = {
 };
 
 export const actions = {
-  async nuxtServerInit(vuexContext, context) {
+  async nuxtServerInit(vuexContext) {
     const data = await this.$axios
       .post("/authorize/token?expire_hours=2", {
         user: "amirhossein_zebardast",
@@ -152,6 +152,7 @@ export const actions = {
           });
         });
 
+        // set data in location info
         context.commit("setLocInfo", {
           loc: payload.loc,
           data: {
@@ -161,12 +162,14 @@ export const actions = {
           },
         });
 
+        // set data in active day
         context.commit("setActiveDay", {
           ...weather[0],
           id: 0,
         });
 
-        context.commit("setCurrentLoc", {
+        // set data in current location
+        context.commit("set_CurrentLoc_and_FilterLocations", {
           ...payload.data,
           weathers: weather,
           locIndex: payload.loc,

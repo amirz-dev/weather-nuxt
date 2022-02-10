@@ -7,6 +7,7 @@
         <Days/>
 
         <div class="flex flex-col-reverse xl:flex-row">
+          
           <!--===== Air Quality and rainfall =====-->
           <div class="flex flex-col lg:w-[395px] mt-[18px]">
             <AirQuality/>
