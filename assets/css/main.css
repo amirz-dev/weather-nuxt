@@ -4,11 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
+
 .day-hover {
-    @apply hover:bg-gradient-to-br from-[#94B8FF] to-[#6598FF] hover:text-white hover:cursor-pointer;
+    @apply hover:bg-gradient-to-br hover:text-white hover:cursor-pointer;
 }
 .day-active {
-    @apply  bg-gradient-to-br from-[#94B8FF] to-[#6598FF] text-white;
+    @apply  bg-gradient-to-br text-white;
 }
 
 ::-webkit-scrollbar {

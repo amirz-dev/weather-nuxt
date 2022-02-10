@@ -19,7 +19,7 @@ export default {
   },
   created(){
     
-      this.$store.dispatch("getCityInfo", "karaj");
+      this.$store.dispatch("getCityInfo",{city:"karaj",loc:'first'});
   }
 };
 </script>
