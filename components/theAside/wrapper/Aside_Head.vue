@@ -16,6 +16,7 @@
       />
       <div
         class="w-[30px] h-[30px] rounded-full flex items-center justify-center bg-white dark:bg-[#17294E]"
+        @click="submit"
       >
         <i class="ri-map-pin-line text-[22px]" :class="color"></i>
       </div>
