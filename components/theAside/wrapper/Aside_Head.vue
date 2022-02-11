@@ -39,10 +39,10 @@
           class="absolute w-[35px] h-[35px] rounded-full bg-[#5C92FF] transition ease-in-out duration-300 left-[7px] dark:translate-x-[41px]"
         ></div>
       </div>
-      <!--===== Notification =====-->
+      <!--===== Github =====-->
       <div class="relative flex">
         <a
-          href="https://github.com/amirz-dev"
+          href="https://github.com/amirz-dev/weather-nuxt"
           target="_blank"
           class="hover:cursor-pointer"
         >
