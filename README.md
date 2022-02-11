@@ -19,7 +19,8 @@ The Climate project displays information using the API. Among the important poin
 >CSS framework: [tailwindcss](https://tailwindcss.com/)
 >
 >icons: [remixicons](https://remixicon.com/)
-
+>
+>API: [foreca](https://developer.foreca.com/)
 
 ## Project setup
 ```bash
