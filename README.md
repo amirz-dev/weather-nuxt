@@ -2,7 +2,7 @@
 ![Logo](https://cdn.dribbble.com/users/2716253/screenshots/16206037/media/1e774d64f78a5b719b2b3e7b80e61672.png)
 
 
-# NFT Dashboard
+# Weather
 
 The Weather project displays information using the API. Among the important points of the seven-day information are three different cities. This project is modeled on a design on a dribble site and written using NUXT.js. [Preview](https://weather-nuxt-one.vercel.app/)
 
