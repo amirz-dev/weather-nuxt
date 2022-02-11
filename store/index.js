@@ -92,16 +92,24 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit(vuexContext) {
     const data = await this.$axios
-      .post("/authorize/token?expire_hours=168", {
+      .post("/authorize/key", {
         user: "amirhossein_zebardast",
         password: "D4PN9m7ZgG3j",
       })
-      .then(({ data }) => data);
+      .then(({ data }) => data.tokens[0]);
 
     if (data) {
       vuexContext.commit("setAccessToken", data.access_token);
     }
   },
+  /*
+  document say key tokens is non expire token 
+  .post("/authorize/token?expire_hours=168", {
+        user: "amirhossein_zebardast",
+        password: "D4PN9m7ZgG3j",
+      })
+      .then(({ data }) => data);
+   */
 
   async getCityInfo(context, payload) {
     await this.$axios
