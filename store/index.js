@@ -92,7 +92,7 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit(vuexContext) {
     const data = await this.$axios
-      .post("/authorize/key", {
+      .post("/authorize/token?expire_hours=168", {
         user: "amirhossein_zebardast",
         password: "D4PN9m7ZgG3j",
       })
