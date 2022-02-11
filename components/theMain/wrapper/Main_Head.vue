@@ -2,10 +2,14 @@
   <div class="flex justify-between">
     <!-- Time -->
     <div class="flex flex-col font-medium">
-      <h1 class="text-[40px] md:text-[45px] lg:text-[50px] text-[#5C92FF]">{{ time }}</h1>
-      
-      <p class="text-[14px] md:text-[16px] lg:text-[18px] text-[#363E64] dark:text-white">
-        {{ Date.now() | date }}{{`, ${new Date().getFullYear()}`}}
+      <h1 class="text-[40px] md:text-[45px] lg:text-[50px] text-[#5C92FF]">
+        {{ time }}
+      </h1>
+
+      <p
+        class="text-[14px] md:text-[16px] lg:text-[18px] text-[#363E64] dark:text-white"
+      >
+        {{ Date.now() | date }}{{ `, ${new Date().getFullYear()}` }}
       </p>
 
       <div class="flex text-[#6498FF] items-center">
@@ -13,7 +17,11 @@
           class="text-[32px] lg:text-[37px]"
           :class="welcomeMsg == 'Good night' ? 'ri-moon-line' : 'ri-sun-line'"
         ></i>
-        <h1 class="text-[28px] md:text-[25px] lg:text-[32px] font-semibold ml-3">{{ welcomeMsg }}, Amir!</h1>
+        <h1
+          class="text-[28px] md:text-[25px] lg:text-[32px] font-semibold ml-3"
+        >
+          {{ welcomeMsg }}, Amir!
+        </h1>
       </div>
     </div>
 
@@ -51,14 +59,15 @@ export default {
   computed: {
     welcomeMsg() {
       // change welcome message
-      if (this.time.slice(-2) == "AM" && +this.time.slice(0, 2) > 3) {
+      const time = new Date().getHours();
+      if (time > 3 && time < 12) {
         return "Good morning";
-      } else if (this.time.slice(-2) == "PM" && +this.time.slice(0, 2) == 12 || +this.time.slice(0, 1) < 6) {
+      } else if (time >= 12 && time < 6) {
         return "Good afternoon";
       } else {
         return "Good night";
       }
-      // 
+      //
     },
   },
 
