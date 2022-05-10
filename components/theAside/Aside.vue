@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import Head from "./wrapper/Aside_Head.vue";
-import CurrentLocation from "./wrapper/Aside_CurrentLocation.vue";
-import MoreLocation from "./wrapper/Aside_MoreLocation.vue";
+import Head from "./wrapper/_head.vue";
+import CurrentLocation from "./wrapper/_currentLocation.vue";
+import MoreLocation from "./wrapper/_moreLocation.vue";
 
 export default {
   name: "aside-wrapper",

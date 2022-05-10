@@ -17,9 +17,5 @@ export default {
     Aside,
     Main,
   },
-  created(){
-      // After running the program and receiving the token from the api, we will receive the information of Karaj as the first city
-      this.$store.dispatch("getCityInfo",{city:"karaj",loc:'first'});
-  }
 };
 </script>

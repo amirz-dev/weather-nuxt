@@ -45,7 +45,7 @@ export default {
   ],
 
   axios: {
-    baseURL:"https://pfa.foreca.com/"
+    baseURL:"https://fnw-us.foreca.com/api/v1/"
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

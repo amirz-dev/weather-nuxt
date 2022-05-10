@@ -1,5 +1,6 @@
 export const state = () => ({
-  accessToken: "",
+  accessToken:
+    "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9mbnctdXMuZm9yZWNhLmNvbVwvYXV0aG9yaXplXC90b2tlbiIsImlhdCI6MTY0MTIxNjg1MCwiZXhwIjo5OTk5OTk5OTk5LCJuYmYiOjE2NDEyMTY4NTAsImp0aSI6IjM1YTRhNjI1MTYzOWRhZWIiLCJzdWIiOiJzYW1hbmFocmFyaSIsImZtdCI6IlhEY09oakM0MCtBTGpsWVR0amJPaUE9PSJ9.IthiH4rWTzR_NybnYrCSVX8O08FXJF9IBtTslBYI7CQ",
   currentLoc: {},
   allLoc: {
     first: {},
@@ -91,23 +92,76 @@ export const mutations = {
 
 export const actions = {
   async nuxtServerInit(vuexContext) {
-    const data = await this.$axios
-      .post("/authorize/token?expire_hours=2", {
-        user: "amirhossein_zebardast",
-        password: "D4PN9m7ZgG3j",
-      })
-      .then(({ data }) => data);
+    // first enter in page load karaj weather info ssr
+    const cityResult = await this.$axios.get(`location/search/karaj`, {
+      headers: {
+        Authorization: vuexContext.state.accessToken,
+      },
+    });
 
-    if (data) {
-      vuexContext.commit("setAccessToken", data.access_token);
-    }
+    if (cityResult.status !== 200) return;
+
+    const { data: cityData } = cityResult;
+    const dailyResult = await this.$axios.get(
+      `forecast/daily/${cityData.locations[0].id}?windunit=KMH&dataset=full&periods=7`,
+      {
+        headers: {
+          Authorization: vuexContext.state.accessToken,
+        },
+      }
+    );
+
+    if (dailyResult.status !== 200) return;
+
+    const { data: dailyData } = dailyResult;
+
+    const weather = [];
+
+    dailyData.forecast.forEach((item) => {
+      weather.push({
+        date: item.date,
+        temp: item.maxTemp,
+        wind: item.maxWindSpeed,
+        humidity: item.minRelHumidity,
+        sunrise: item.sunrise,
+        sunset: item.sunset,
+        icon: item.symbol,
+        description: item.symbolPhrase,
+      });
+    });
+
+    vuexContext.commit("setLocInfo", {
+      loc: "first",
+      data: {
+        id: cityData.locations[0].id,
+        name: cityData.locations[0].name,
+        country: cityData.locations[0].country,
+        weathers: weather,
+        locIndex: "first",
+      },
+    });
+
+    // set data in active day
+    vuexContext.commit("setActiveDay", {
+      ...weather[0],
+      id: 0,
+    });
+
+    // set data in current location
+    vuexContext.commit("set_CurrentLoc_and_FilterLocations", {
+      id: cityData.locations[0].id,
+      name: cityData.locations[0].name,
+      country: cityData.locations[0].country,
+      weathers: weather,
+      locIndex: "first",
+    });
   },
 
   async getCityInfo(context, payload) {
     await this.$axios
-      .get(`/api/v1/location/search/${payload.city}`, {
+      .get(`location/search/${payload.city}`, {
         headers: {
-          Authorization: `Bearer ${context.state.accessToken}`,
+          Authorization: context.state.accessToken,
         },
       })
       .then(({ data }) => {
@@ -127,10 +181,10 @@ export const actions = {
   async getDailyWeather(context, payload) {
     await this.$axios
       .get(
-        `/api/v1/forecast/daily/${payload.data.id}?windunit=KMH&dataset=full&periods=7`,
+        `forecast/daily/${payload.data.id}?windunit=KMH&dataset=full&periods=7`,
         {
           headers: {
-            Authorization: `Bearer ${context.state.accessToken}`,
+            Authorization: context.state.accessToken,
           },
         }
       )
@@ -177,11 +231,3 @@ export const actions = {
       });
   },
 };
-
-/* 
-city info:
-https://pfa.foreca.com/api/v1/location/search/karaj
-
-7 days:
-https://pfa.foreca.com/api/v1/forecast/daily/100128747?windunit=KMH&dataset=full&periods=7
-*/

@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import Head from './wrapper/Main_Head.vue'
-import Days from './wrapper/Main_Days.vue'
-import AirQuality from './wrapper/Main_AirQuality.vue'
-import Rainfall from './wrapper/Main_Rainfall.vue'
-import SunTime from './wrapper/Main_SunTime.vue'
+import Head from './wrapper/_head.vue'
+import Days from './wrapper/_days.vue'
+import AirQuality from './wrapper/_airQuality.vue'
+import Rainfall from './wrapper/_rainfall.vue'
+import SunTime from './wrapper/_sunTime.vue'
 export default {
     name:'main-wrapper',
     components:{

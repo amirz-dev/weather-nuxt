@@ -48,7 +48,7 @@
 export default {
   data() {
     return {
-      time: "",
+      time: "00:00",
     };
   },
   methods: {
@@ -62,16 +62,14 @@ export default {
       const time = new Date().getHours();
       if (time > 3 && time < 12) {
         return "Good morning";
-      } else if (time >= 12 && time < 6) {
+      } else if (time >= 12 && time < 18) {
         return "Good afternoon";
       } else {
         return "Good night";
       }
-      //
     },
   },
-
-  created() {
+  beforeCreate() {
     // get time
     setInterval(() => {
       const d = new Date();
